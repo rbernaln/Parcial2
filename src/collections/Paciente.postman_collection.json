@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "08bd9a1d-f554-4205-98f5-606f012eaace",
+		"name": "Paciente",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22899576"
+	},
+	"item": [
+		{
+			"name": "create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response should have the correct schema\", function () {\r",
+							"    pm.response.to.have.jsonSchema({\r",
+							"        type: \"object\",\r",
+							"        required: [\"id\", \"nombre\", \"genero\"],\r",
+							"        properties: {\r",
+							"            id: { type: \"string\" },\r",
+							"            nombre: { type: \"string\" },\r",
+							"            genero: { type: \"string\" }\r",
+							"        }\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\":\"123e4567-e89b-12d3-a456-426614174000\",\r\n  \"nombre\": \"Ana López\",\r\n  \"genero\": \"F\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/pacientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test for status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test for response time\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/pacientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findOne",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test for status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test for response time\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/pacientes/123e4567-e89b-12d3-a456-426614174000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pacientes",
+						"123e4567-e89b-12d3-a456-426614174000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 500\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields - statusCode and message\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.statusCode).to.exist;\r",
+							"    pm.expect(responseData.message).to.exist;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/pacientes/123e4567-e89b-12d3-a456-426614174000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pacientes",
+						"123e4567-e89b-12d3-a456-426614174000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response should have the correct schema\", function () {\r",
+							"    pm.response.to.have.jsonSchema({\r",
+							"        type: \"object\",\r",
+							"        required: [\"id\", \"nombre\", \"genero\"],\r",
+							"        properties: {\r",
+							"            id: { type: \"string\" },\r",
+							"            nombre: { type: \"string\" },\r",
+							"            genero: { type: \"string\" }\r",
+							"        }\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\":\"123e4567-e89b-12d3-a456-426614174000\",\r\n  \"nombre\": \"Ana López\",\r\n  \"genero\": \"F\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/pacientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Medico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response has the expected schema\", function () {\r",
+							"    pm.response.to.have.jsonSchema({\r",
+							"        type: \"object\",\r",
+							"        properties: {\r",
+							"            id: { type: \"string\" },\r",
+							"            nombre: { type: \"string\" },\r",
+							"            especialidad: { type: \"string\" },\r",
+							"            telefono: { type: \"string\" }\r",
+							"        },\r",
+							"        required: [\"id\", \"nombre\", \"especialidad\", \"telefono\"]\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\":\"456e7890-e89b-12d3-a456-426614174001\",\r\n  \"nombre\": \"Dr. Juan Pérez\",\r\n  \"especialidad\": \"Cardiología\",\r\n  \"telefono\": \"555-1234\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/medicos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"medicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addMedicoToPaciente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 201\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(201);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.id).to.exist;\r",
+							"    pm.expect(responseData.nombre).to.exist;\r",
+							"    pm.expect(responseData.genero).to.exist;\r",
+							"  \r",
+							"    pm.expect(responseData.medicos).to.be.an('array');\r",
+							"    responseData.medicos.forEach(function(medico) {\r",
+							"        pm.expect(medico.id).to.exist;\r",
+							"        pm.expect(medico.nombre).to.exist;\r",
+							"        pm.expect(medico.especialidad).to.exist;\r",
+							"        pm.expect(medico.telefono).to.exist;\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"ID is a non-empty string\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"ID should be a non-empty string\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Each 'medicos' object should have id, nombre, especialidad, and telefono\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData.medicos).to.be.an('array').that.is.not.empty;\r",
+							"\r",
+							"    responseData.medicos.forEach(function(medico) {\r",
+							"        pm.expect(medico).to.have.property('id').that.is.a('string');\r",
+							"        pm.expect(medico).to.have.property('nombre').that.is.a('string');\r",
+							"        pm.expect(medico).to.have.property('especialidad').that.is.a('string');\r",
+							"        pm.expect(medico).to.have.property('telefono').that.is.a('string');\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/pacientes/123e4567-e89b-12d3-a456-426614174000/medicos/456e7890-e89b-12d3-a456-426614174001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"pacientes",
+						"123e4567-e89b-12d3-a456-426614174000",
+						"medicos",
+						"456e7890-e89b-12d3-a456-426614174001"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

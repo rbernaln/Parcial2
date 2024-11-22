@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Medico } from './medico/medico.entity'; 
-import { Paciente } from './paciente/paciente.entity';
-import { Diagnostico } from './diagnostico/diagnostico.entity';
+import { MedicoModule } from './medico/medico.module'; 
+import { PacienteModule } from './paciente/paciente.module'; 
+import { DiagnosticoModule } from './diagnostico/diagnostico.module'; 
 
 @Module({
   imports: [
@@ -14,10 +14,12 @@ import { Diagnostico } from './diagnostico/diagnostico.entity';
       username: 'postgres',
       password: '1234',
       database: 'parcial',
-      entities: [Medico, Paciente, Diagnostico], 
+      autoLoadEntities: true, 
       synchronize: true, 
     }),
-    TypeOrmModule.forFeature([Medico, Paciente, Diagnostico]), 
+    MedicoModule, 
+    PacienteModule, 
+    DiagnosticoModule, 
   ],
 })
 export class AppModule {}
